@@ -1,25 +1,32 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import { Buscador } from './components/buscador/Buscador';
+import { Nav } from './components/header/Nav';
+import { Tabla } from './components/tabla/Tabla';
 
-function App() {
+export const App = () => {
+
+  const initialState={
+  datos: {
+            name: '',
+            status: '',
+            species: '',
+            type: '',
+            gender: ''
+  } 
+  };
+  const [state, setstate] = useState(initialState);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+    <Nav/>
+    <div className="container-fluid">
+      <div className="row">
+      <Buscador setstate={ setstate }/>
+      <Tabla state={ state }/>
+      </div>
     </div>
-  );
+    </>
+  )
 }
 
-export default App;
